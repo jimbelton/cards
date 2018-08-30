@@ -5,6 +5,6 @@ type Card struct {
      Suit string
 }
 
-func NewCard() *Card {
-    return &Card {"A", "hearts"}
+func NewCard(rank string, suit string) *Card {
+    return &Card {rank, suit}
 }

@@ -27,13 +27,22 @@ var suits = map[string] bool {
 
 func TestDeck(t *testing.T) {
     deck := cards.NewDeck()
-    card := deck.DealCard()
+    var hand[52] *cards.Card
 
-    if !ranks[card.Rank] {
-        t.Errorf("Unexpected rank %s", card.Rank)
+    for i := 0; i < 52; i++ {
+        hand[i] = deck.DealCard()
+
+        if !ranks[hand[i].Rank] {
+            t.Errorf("Unexpected rank %s", hand[i].Rank)
+        }
+
+        if !suits[hand[i].Suit] {
+            t.Errorf("Unexpected suit %s", hand[i].Suit)
+        }
     }
 
-    if !suits[card.Suit] {
-        t.Errorf("Unexpected suit %s", card.Suit)
+    if hand[0].Rank == hand[1].Rank && hand[0].Suit == hand[1].Suit {
+        t.Errorf("First card dealt (%s/%s) is the same as the second card dealt (%s/%s)",
+                 hand[0].Rank, hand[0].Suit,  hand[1].Rank, hand[1].Suit)
     }
 }
