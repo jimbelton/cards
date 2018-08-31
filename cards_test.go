@@ -41,8 +41,12 @@ func TestDeck(t *testing.T) {
         }
     }
 
-    if hand[0].Rank == hand[1].Rank && hand[0].Suit == hand[1].Suit {
-        t.Errorf("First card dealt (%s/%s) is the same as the second card dealt (%s/%s)",
-                 hand[0].Rank, hand[0].Suit,  hand[1].Rank, hand[1].Suit)
+    for i := 0; i < 51; i++ {
+        for j := i + 1; j < 52; j++ {
+            if hand[i].Rank == hand[j].Rank && hand[i].Suit == hand[j].Suit {
+                t.Errorf("Card %d (%s/%s) is the same as card %d (%s/%s)",
+                         i, hand[i].Rank, hand[i].Suit, j, hand[j].Rank, hand[j].Suit)
+            }
+        }
     }
 }
