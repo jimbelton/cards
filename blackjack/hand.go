@@ -13,3 +13,7 @@ func NewHand(deck *cards.Deck) *Hand {
     hand.cards = append(hand.cards, deck.DealCard())
     return hand
 }
+
+func (hand *Hand) NumCards() int {
+    return len(hand.cards)
+}
