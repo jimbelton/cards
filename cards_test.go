@@ -2,6 +2,7 @@ package main
 
 import "./cards"
 import "testing"
+import "fmt"
 
 var ranks = map[string] bool {
     "A":  true,
@@ -41,6 +42,10 @@ func TestDeck(t *testing.T) {
         }
     }
 
+    if deck.DealCard() != nil {
+        t.Errorf("Expected nil after dealing all 52 cards")
+    }
+
     for i := 0; i < 51; i++ {
         for j := i + 1; j < 52; j++ {
             if hand[i].Rank == hand[j].Rank && hand[i].Suit == hand[j].Suit {
@@ -48,5 +53,24 @@ func TestDeck(t *testing.T) {
                          i, hand[i].Rank, hand[i].Suit, j, hand[j].Rank, hand[j].Suit)
             }
         }
+    }
+
+    deck2 := cards.NewDeck()
+    deck3 := cards.NewDeck()
+    diffs := 0
+
+    for i := 0; i < 52; i++ {
+        card2 := deck2.DealCard()
+        card3 := deck3.DealCard()
+
+        if card2.Rank != card3.Rank || card2.Suit != card3.Suit {
+            diffs++
+        } else {
+            fmt.Printf("Card %d is %s/%s in both decks\n", i, card2.Rank, card2.Suit)
+        }
+    }
+
+    if diffs == 0 {
+        t.Errorf("Two decks are identical");
     }
 }
