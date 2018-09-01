@@ -74,3 +74,11 @@ func TestDeck(t *testing.T) {
         t.Errorf("Two decks are identical");
     }
 }
+
+func TestPile(t *testing.T) {
+    pile := cards.NewPile()
+
+    if pile.ToStr() != "" {
+        t.Errorf("Empty pile's string is '%s', not ''", pile.ToStr())
+    }
+}
