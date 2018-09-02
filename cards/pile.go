@@ -21,3 +21,8 @@ func (pile *Pile) ToStr() string {
 
     return str
 }
+
+func (pile *Pile) PutDown(card *Card) *Pile {
+    pile.cards = append(pile.cards, card)
+    return pile
+}
