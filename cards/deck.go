@@ -42,3 +42,8 @@ func (deck *Deck) Shuffle() {
         deck.cards[j] = save
     }
 }
+
+func (deck *Deck) Stack(card *Card) *Deck {
+    deck.PutDown(card)
+    return deck
+}
