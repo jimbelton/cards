@@ -16,10 +16,12 @@ func NewHand(deck *cards.Deck) *Hand {
 
 func (hand *Hand) Score() int {
     score := 0
+    aces  := 0
 
     for i := 0; i < len(hand.Cards); i++ {
         switch hand.Cards[i].Rank {
-        case "A":  score += 1
+        case "A":  aces++
+                   score += 11
         case "2":  score += 2
         case "3":  score += 3
         case "4":  score += 4
@@ -33,6 +35,11 @@ func (hand *Hand) Score() int {
         case "Q":  score += 10
         case "K":  score += 10
         }
+    }
+
+    for score > 21 && aces > 0 {
+        score -= 10
+        aces--
     }
 
     return score

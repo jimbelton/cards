@@ -22,4 +22,21 @@ func TestHand(t *testing.T) {
     if hand.Score() != 20 {
         t.Errorf("Blackjack hand %s should have a score of 20, not %d", hand.ToStr(), hand.Score())
     }
+
+    deck.Stack(cards.NewCard("Q", "hearts"))
+    deck.Stack(cards.NewCard("A", "spades"))
+    hand = blackjack.NewHand(deck)
+
+    if hand.Score() != 21 {
+        t.Errorf("Blackjack hand %s should have a score of 21, not %d", hand.ToStr(), hand.Score())
+    }
+
+
+    deck.Stack(cards.NewCard("A", "diamonds"))
+    deck.Stack(cards.NewCard("A", "clubs"))
+    hand = blackjack.NewHand(deck)
+
+    if hand.Score() != 12 {
+        t.Errorf("Blackjack hand %s should have a score of 12, not %d", hand.ToStr(), hand.Score())
+    }
 }
