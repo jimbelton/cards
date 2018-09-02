@@ -23,23 +23,23 @@ func NewDeck() *Deck {
 }
 
 func (deck *Deck) DealCard() *Card {
-    if len(deck.cards) == 0 {
+    if len(deck.Cards) == 0 {
         return nil
     }
 
-    card := deck.cards[len(deck.cards) - 1]
-    deck.cards = deck.cards[:len(deck.cards)-1]
+    card := deck.Cards[len(deck.Cards) - 1]
+    deck.Cards = deck.Cards[:len(deck.Cards) - 1]
     return card
 }
 
 func (deck *Deck) Shuffle() {
-    maxIndex := len(deck.cards) - 1
+    maxIndex := len(deck.Cards) - 1
 
     for i := 0; i < maxIndex; i++ {
-        save         := deck.cards[i]
+        save         := deck.Cards[i]
         j            := rand.Intn(maxIndex - i) + i + 1
-        deck.cards[i] = deck.cards[j]
-        deck.cards[j] = save
+        deck.Cards[i] = deck.Cards[j]
+        deck.Cards[j] = save
     }
 }
 

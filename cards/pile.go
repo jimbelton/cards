@@ -1,7 +1,7 @@
 package cards
 
 type Pile struct {
-    cards [] *Card
+    Cards [] *Card
 }
 
 func NewPile() *Pile {
@@ -11,10 +11,10 @@ func NewPile() *Pile {
 func (pile *Pile) ToStr() string {
     str := ""
 
-    for i := 0; i < len(pile.cards); i++ {
-        str += pile.cards[i].Rank + "/" + pile.cards[i].Suit
+    for i := 0; i < len(pile.Cards); i++ {
+        str += pile.Cards[i].Rank + "/" + pile.Cards[i].Suit
 
-        if i < len(pile.cards) - 1 {
+        if i < len(pile.Cards) - 1 {
             str += ", "
         }
     }
@@ -23,6 +23,6 @@ func (pile *Pile) ToStr() string {
 }
 
 func (pile *Pile) PutDown(card *Card) *Pile {
-    pile.cards = append(pile.cards, card)
+    pile.Cards = append(pile.Cards, card)
     return pile
 }
