@@ -26,3 +26,13 @@ func (pile *Pile) PutDown(card *Card) *Pile {
     pile.Cards = append(pile.Cards, card)
     return pile
 }
+
+func (pile *Pile) PickUp() *Card {
+    if len(pile.Cards) == 0 {
+        return nil
+    }
+
+    card := pile.Cards[len(pile.Cards) - 1]
+    pile.Cards = pile.Cards[:len(pile.Cards) - 1]
+    return card
+}

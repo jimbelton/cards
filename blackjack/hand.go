@@ -52,3 +52,15 @@ func (hand *Hand) CanSplit() bool {
 
     return false
 }
+
+func (hand *Hand) Split(deck *cards.Deck) *Hand {
+    if !hand.CanSplit() {
+        return nil
+    }
+
+    var split *Hand = new(Hand)
+    split.PutDown(hand.PickUp())
+    hand.PutDown( deck.DealCard())
+    split.PutDown(deck.DealCard())
+    return split
+}
