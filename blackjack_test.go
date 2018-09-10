@@ -50,7 +50,7 @@ func TestHand(t *testing.T) {
     deck.Stack(cards.NewCard("K", "diamonds"))
     deck.Stack(cards.NewCard("9", "clubs"))
 
-    split := hand.Split(deck)
+    split := hand.Split()
 
     if hand.Score() != 20 {
         t.Errorf("Blackjack hand %s should have a score of 20, not %d", hand.ToStr(), hand.Score())
@@ -58,5 +58,12 @@ func TestHand(t *testing.T) {
 
     if split.Score() != 21 {
         t.Errorf("Blackjack hand %s should have a score of 21, not %d", split.ToStr(), split.Score())
+    }
+
+    deck.Stack(cards.NewCard("A", "spades"))
+    hand.Hit()
+
+    if hand.Score() != 21 {
+        t.Errorf("Blackjack hand %s (after hit) should have a score of 21, not %d", hand.ToStr(), hand.Score())
     }
 }

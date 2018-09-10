@@ -4,11 +4,13 @@ import "../cards"
 
 type Hand struct {
     cards.Pile
+    deck *cards.Deck
 }
 
 func NewHand(deck *cards.Deck) *Hand {
     var hand *Hand = new(Hand)
 
+    hand.deck = deck
     hand.PutDown(deck.DealCard())
     hand.PutDown(deck.DealCard())
     return hand
@@ -53,14 +55,19 @@ func (hand *Hand) CanSplit() bool {
     return false
 }
 
-func (hand *Hand) Split(deck *cards.Deck) *Hand {
+func (hand *Hand) Split() *Hand {
     if !hand.CanSplit() {
         return nil
     }
 
     var split *Hand = new(Hand)
+    split.deck = hand.deck
     split.PutDown(hand.PickUp())
-    hand.PutDown( deck.DealCard())
-    split.PutDown(deck.DealCard())
+    hand.PutDown( hand.deck.DealCard())
+    split.PutDown(hand.deck.DealCard())
     return split
+}
+
+func (hand *Hand) Hit() {
+    hand.PutDown(hand.deck.DealCard())
 }
