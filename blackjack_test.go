@@ -67,3 +67,15 @@ func TestHand(t *testing.T) {
         t.Errorf("Blackjack hand %s (after hit) should have a score of 21, not %d", hand.ToStr(), hand.Score())
     }
 }
+
+func TestDeckExhaustionDealingHand(t *testing.T) {
+    deck := cards.NewDeck()
+
+    for i := 0; i < 51; i++ {
+        deck.DealCard()
+    }
+
+    if (blackjack.NewHand(deck) != nil) {
+        t.Errorf("Dealt a hand when deck had only 51 cards")
+    }
+}

@@ -11,8 +11,17 @@ func NewHand(deck *cards.Deck) *Hand {
     var hand *Hand = new(Hand)
 
     hand.deck = deck
-    hand.PutDown(deck.DealCard())
-    hand.PutDown(deck.DealCard())
+
+    for i := 0; i < 2; i++ {
+        card := deck.DealCard()
+
+        if (card == nil) {
+            return nil
+        }
+
+        hand.PutDown(card)
+    }
+
     return hand
 }
 
