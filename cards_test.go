@@ -82,3 +82,15 @@ func TestPile(t *testing.T) {
         t.Errorf("Empty pile's string is '%s', not ''", pile.ToStr())
     }
 }
+
+func TestDeckExhaustion(t *testing.T) {
+    deck := cards.NewDeck()
+
+    for i := 0; i < 52; i++ {
+        deck.DealCard()
+    }
+
+    if (deck.DealCard() != nil) {
+        t.Errorf("Deck has more than 52 cards")
+    }
+}
