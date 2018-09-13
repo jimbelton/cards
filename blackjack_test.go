@@ -86,6 +86,16 @@ func TestDeckExhaustionDealingHand(t *testing.T) {
     if (hand == nil) {
         t.Errorf("Failed to deal a hand when deck had 2 cards")
     } else if hand.Hit() != nil {
-         t.Errorf("Hit when deck had no cards left")
+        t.Errorf("Hit when deck had no cards left")
+    }
+
+    deck.Stack(cards.NewCard("K", "clubs"))
+
+    if !hand.CanSplit() {
+        t.Errorf("Can't split a hand with two aces")
+    }
+
+    if hand.Split() != nil {
+        t.Errorf("Split a hand when there was only one card left in the deck")
     }
 }

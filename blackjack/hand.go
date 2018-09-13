@@ -68,8 +68,11 @@ func (hand *Hand) Split() *Hand {
     var split *Hand = new(Hand)
     split.deck = hand.deck
     split.PutDown(hand.PickUp())
-    hand.PutDown( hand.deck.DealCard())
-    split.PutDown(hand.deck.DealCard())
+
+    if hand.PutDown(hand.deck.DealCard()) == nil ||  split.PutDown(hand.deck.DealCard()) == nil {
+        return nil
+    }
+
     return split
 }
 
