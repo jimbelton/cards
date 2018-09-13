@@ -94,3 +94,22 @@ func TestDeckExhaustion(t *testing.T) {
         t.Errorf("Deck has more than 52 cards")
     }
 }
+
+func TestDiscard(t *testing.T) {
+    deck := cards.NewDeck()
+
+    for i := 0; i < 52; i++ {
+        deck.Discard(deck.DealCard())
+    }
+
+    for i := 0; i < 52; i++ {
+        if deck.DealCard() == nil {
+            t.Errorf("Failed to deal card %d after shuffling", i)
+            break
+        }
+    }
+
+    if (deck.DealCard() != nil) {
+        t.Errorf("Redealt deck has more than 52 cards")
+    }
+}
