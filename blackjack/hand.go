@@ -13,13 +13,9 @@ func NewHand(deck *cards.Deck) *Hand {
     hand.deck = deck
 
     for i := 0; i < 2; i++ {
-        card := deck.DealCard()
-
-        if (card == nil) {
+        if (hand.PutDown(hand.deck.DealCard()) == nil) {
             return nil
         }
-
-        hand.PutDown(card)
     }
 
     return hand
@@ -77,6 +73,10 @@ func (hand *Hand) Split() *Hand {
     return split
 }
 
-func (hand *Hand) Hit() {
-    hand.PutDown(hand.deck.DealCard())
+func (hand *Hand) Hit() *Hand {
+    if hand.PutDown(hand.deck.DealCard()) != nil {
+        return hand
+    }
+
+    return nil
 }

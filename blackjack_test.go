@@ -76,6 +76,16 @@ func TestDeckExhaustionDealingHand(t *testing.T) {
     }
 
     if (blackjack.NewHand(deck) != nil) {
-        t.Errorf("Dealt a hand when deck had only 51 cards")
+        t.Errorf("Dealt a hand when deck had only 1 card left")
+    }
+
+    deck.Stack(cards.NewCard("A", "diamonds"))
+    deck.Stack(cards.NewCard("A", "clubs"))
+    hand := blackjack.NewHand(deck)
+
+    if (hand == nil) {
+        t.Errorf("Failed to deal a hand when deck had 2 cards")
+    } else if hand.Hit() != nil {
+         t.Errorf("Hit when deck had no cards left")
     }
 }

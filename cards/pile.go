@@ -23,6 +23,10 @@ func (pile *Pile) ToStr() string {
 }
 
 func (pile *Pile) PutDown(card *Card) *Pile {
+    if card == nil {
+        return nil
+    }
+
     pile.Cards = append(pile.Cards, card)
     return pile
 }
