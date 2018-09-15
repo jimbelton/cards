@@ -8,3 +8,7 @@ type Card struct {
 func NewCard(rank string, suit string) *Card {
     return &Card {rank, suit}
 }
+
+func (card *Card) ToStr() string {
+    return card.Rank + "/" + card.Suit
+}

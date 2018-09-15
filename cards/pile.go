@@ -12,7 +12,7 @@ func (pile *Pile) ToStr() string {
     str := ""
 
     for i := 0; i < len(pile.Cards); i++ {
-        str += pile.Cards[i].Rank + "/" + pile.Cards[i].Suit
+        str += pile.Cards[i].ToStr()
 
         if i < len(pile.Cards) - 1 {
             str += ", "

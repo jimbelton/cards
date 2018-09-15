@@ -29,6 +29,7 @@ func main() {
 
     for play {
         dealersHand := blackjack.NewHand(deck)
+        fmt.Printf("Dealer's top card is the %s.\n", dealersHand.Cards[0].ToStr())
         play = getYesOrNo("Do you want to play again [y/n]? ")
     }
 }
