@@ -52,6 +52,14 @@ func (hand *Hand) Score() int {
     return score
 }
 
+func (hand *Hand) IsBlackjack() bool {
+    if hand.Score() == 21 && hand.NumCards() == 2 {
+        return true
+    }
+
+    return false
+}
+
 func (hand *Hand) CanSplit() bool {
     if len(hand.Cards) == 2 && hand.Cards[0].Rank == hand.Cards[1].Rank {
         return true

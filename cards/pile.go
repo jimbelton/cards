@@ -8,6 +8,10 @@ func NewPile() *Pile {
     return new(Pile)
 }
 
+func (pile *Pile) NumCards() int {
+    return len(pile.Cards)
+}
+
 func (pile *Pile) ToStr() string {
     str := ""
 
