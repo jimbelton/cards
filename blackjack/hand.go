@@ -91,3 +91,9 @@ func (hand *Hand) Hit() *Hand {
 
     return nil
 }
+
+func (hand *Hand) Discard() {
+    for card := hand.PickUp(); card != nil; card = hand.PickUp() {
+        hand.deck.Discard(card)
+    }
+}

@@ -124,5 +124,13 @@ func TestDiscardHand(t *testing.T) {
         t.Errorf("Deck has more than 26 blackjack hands")
     }
 
-    _ = hand
+    hand.Discard()
+
+    if (blackjack.NewHand(deck) == nil) {
+        t.Errorf("Couldn't deal a hand after discarding one")
+    }
+
+    if (blackjack.NewHand(deck) != nil) {
+        t.Errorf("Able to deal a hand after dealing 26, discarding and redealing one")
+    }
 }
