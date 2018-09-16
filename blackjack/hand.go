@@ -89,9 +89,9 @@ func (hand *Hand) Split() *Hand {
     return split
 }
 
-func (hand *Hand) Hit() *Hand {
+func (hand *Hand) Hit() *cards.Card {
     if hand.PutDown(hand.deck.DealCard()) != nil {
-        return hand
+        return hand.Cards[len(hand.Cards) - 1]
     }
 
     return nil

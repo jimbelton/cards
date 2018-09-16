@@ -23,6 +23,24 @@ func getYesOrNo(prompt string) bool {
     return false
 }
 
+func playHand(dealersHand *blackjack.Hand, playersHand *blackjack.Hand) {
+    for playersHand.Score() <= 21 {
+        hit := getYesOrNo("Do you want to hit [y/n]? ")
+
+        if !hit {
+            break
+        }
+
+        card := playersHand.Hit()
+        fmt.Printf("You were dealt the %s\n", card.ToStr())
+    }
+
+    if playersHand.Score() > 21 {
+        fmt.Printf("You went bust\n")
+        return
+    }
+}
+
 func main() {
     deck := cards.NewDeck()
     play := getYesOrNo("Do you want to play blackjack [y/n]? ")
@@ -35,7 +53,10 @@ func main() {
 
         if playersHand.IsBlackjack() {
             fmt.Print("Blackjack!\n")
-            fmt.Printf("Dealer's bottom card is the %s\n", dealersHand.Cards[1].ToStr())
+
+            if dealersHand.ScoreCard(0) >= 10 {
+                fmt.Printf("Dealer's bottom card is the %s\n", dealersHand.Cards[1].ToStr())
+            }
 
             if dealersHand.IsBlackjack() {
                 fmt.Print("Blackjack!\n")
@@ -43,6 +64,8 @@ func main() {
             } else {
                 fmt.Print("You win!\n")
             }
+        } else {
+            playHand(dealersHand, playersHand)
         }
 
         dealersHand.Discard()
