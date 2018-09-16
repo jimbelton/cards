@@ -38,6 +38,8 @@ func main() {
             fmt.Printf("You win!\n")
         }
 
+        dealersHand.Discard()
+        playersHand.Discard()
         play = getYesOrNo("Do you want to play again [y/n]? ")
     }
 }
