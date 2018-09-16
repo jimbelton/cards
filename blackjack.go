@@ -32,6 +32,12 @@ func main() {
         fmt.Printf("Dealer's top card is the %s.\n", dealersHand.Cards[0].ToStr())
         playersHand := blackjack.NewHand(deck)
         fmt.Printf("Your hand is %s.\n", playersHand.ToStr())
+
+        if playersHand.IsBlackjack() {
+            fmt.Printf("Blackjack!\n")
+            fmt.Printf("You win!\n")
+        }
+
         play = getYesOrNo("Do you want to play again [y/n]? ")
     }
 }

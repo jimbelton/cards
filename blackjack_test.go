@@ -111,3 +111,18 @@ func TestDeckExhaustionDealingHand(t *testing.T) {
         t.Errorf("Split a hand when there was only one card left in the deck")
     }
 }
+
+func TestDiscardHand(t *testing.T) {
+    deck := cards.NewDeck()
+    var hand *blackjack.Hand
+
+    for i := 0; i < 26; i++ {
+        hand = blackjack.NewHand(deck)
+    }
+
+    if (blackjack.NewHand(deck) != nil) {
+        t.Errorf("Deck has more than 26 blackjack hands")
+    }
+
+    _ = hand
+}

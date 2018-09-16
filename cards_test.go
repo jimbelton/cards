@@ -74,7 +74,7 @@ func TestDeck(t *testing.T) {
         t.Errorf("Two decks are identical");
     }
 }
-git
+
 func TestPile(t *testing.T) {
     pile := cards.NewPile()
 
@@ -84,6 +84,7 @@ func TestPile(t *testing.T) {
 
     if pile.NumCards() != 0 {
         t.Errorf("Empty pile has %d cards", pile.NumCards())
+    }
 }
 
 func TestDeckExhaustion(t *testing.T) {
