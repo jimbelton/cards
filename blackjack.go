@@ -34,8 +34,15 @@ func main() {
         fmt.Printf("Your hand is %s.\n", playersHand.ToStr())
 
         if playersHand.IsBlackjack() {
-            fmt.Printf("Blackjack!\n")
-            fmt.Printf("You win!\n")
+            fmt.Print("Blackjack!\n")
+            fmt.Printf("Dealer's bottom card is the %s\n", dealersHand.Cards[1].ToStr())
+
+            if dealersHand.IsBlackjack() {
+                fmt.Print("Blackjack!\n")
+                fmt.Print("The game is a push!\n")
+            } else {
+                fmt.Print("You win!\n")
+            }
         }
 
         dealersHand.Discard()
