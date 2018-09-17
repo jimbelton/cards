@@ -39,6 +39,26 @@ func playHand(dealersHand *blackjack.Hand, playersHand *blackjack.Hand) {
         fmt.Printf("You went bust\n")
         return
     }
+
+    fmt.Printf("Dealer's bottom card is the %s\n", dealersHand.Cards[1].ToStr())
+
+    for dealersHand.Score() < 17 {
+        card := dealersHand.Hit()
+        fmt.Printf("Dealer drew the %s\n", card.ToStr())
+    }
+
+    if dealersHand.Score() > 21 {
+        fmt.Printf("Dealer went bust\n")
+        return
+    }
+
+    if dealersHand.Score() > playersHand.Score() {
+        fmt.Printf("Dealer wins\n")
+    } else if dealersHand.Score() < playersHand.Score() {
+        fmt.Printf("You win!\n")
+    } else {
+        fmt.Print("The game is a push\n")
+    }
 }
 
 func main() {
@@ -60,7 +80,7 @@ func main() {
 
             if dealersHand.IsBlackjack() {
                 fmt.Print("Blackjack!\n")
-                fmt.Print("The game is a push!\n")
+                fmt.Print("The game is a push\n")
             } else {
                 fmt.Print("You win!\n")
             }
